@@ -33,7 +33,7 @@ MODELS = {
         "batch_size": 256,
         "lr": 3e-4,  # found with hp_sweep
         "epochs": 15,
-        "weight_decay": 1e-4,
+        "weight_decay": 1e-6,  # found with hp_sweep
         "patience": 3,
     },
     "resnet_pretrained": {

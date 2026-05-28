@@ -1,0 +1,15 @@
+{
+  "model": "cnn",
+  "counts": {
+    "TP_real": 9721,
+    "TN_fake": 9513,
+    "FP_fake_as_real": 487,
+    "FN_real_as_fake": 279
+  },
+  "high_freq_mean_radius8": {
+    "TP_real": 0.7180234789848328,
+    "TN_fake": 0.8375000357627869,
+    "FP_fake_as_real": 0.7755584716796875,
+    "FN_real_as_fake": 0.7306878566741943
+  }
+}

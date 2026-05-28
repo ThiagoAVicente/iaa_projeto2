@@ -1,0 +1,15 @@
+{
+  "model": "resnet_scratch",
+  "counts": {
+    "TP_real": 9707,
+    "TN_fake": 9639,
+    "FP_fake_as_real": 361,
+    "FN_real_as_fake": 293
+  },
+  "high_freq_mean_radius8": {
+    "TP_real": 0.7178072333335876,
+    "TN_fake": 0.8370005488395691,
+    "FP_fake_as_real": 0.7672756910324097,
+    "FN_real_as_fake": 0.7372490167617798
+  }
+}

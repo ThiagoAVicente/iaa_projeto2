@@ -1,6 +1,32 @@
-*png
-*jpg
+# venv
 .venv/
 venv/
 
+# data + cached external assets
+data/
+models/
 
+# python
+__pycache__/
+*.pyc
+
+# images and checkpoints (auto-generated)
+*.png
+*.jpg
+*.pth
+
+# but keep curated artifacts under persist/
+!persist/**/*.png
+!persist/**/*.jpg
+!persist/**/*.pth
+
+# latex build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.out
+*.toc
+*.bbl
+*.blg

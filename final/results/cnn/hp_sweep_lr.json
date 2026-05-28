@@ -1,0 +1,36 @@
+{
+  "model": "cnn",
+  "param": "lr",
+  "epochs": 10,
+  "subset_frac": 0.2,
+  "results": [
+    {
+      "lr": 1e-05,
+      "best_val_acc": 0.86175
+    },
+    {
+      "lr": 3e-05,
+      "best_val_acc": 0.90475
+    },
+    {
+      "lr": 0.0001,
+      "best_val_acc": 0.92725
+    },
+    {
+      "lr": 0.0003,
+      "best_val_acc": 0.93525
+    },
+    {
+      "lr": 0.001,
+      "best_val_acc": 0.93725
+    },
+    {
+      "lr": 0.003,
+      "best_val_acc": 0.92425
+    },
+    {
+      "lr": 0.01,
+      "best_val_acc": 0.91825
+    }
+  ]
+}

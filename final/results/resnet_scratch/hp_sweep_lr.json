@@ -1,0 +1,36 @@
+{
+  "model": "resnet_scratch",
+  "param": "lr",
+  "epochs": 10,
+  "subset_frac": 0.2,
+  "results": [
+    {
+      "lr": 1e-05,
+      "best_val_acc": 0.8795
+    },
+    {
+      "lr": 3e-05,
+      "best_val_acc": 0.9075
+    },
+    {
+      "lr": 0.0001,
+      "best_val_acc": 0.931
+    },
+    {
+      "lr": 0.0003,
+      "best_val_acc": 0.941
+    },
+    {
+      "lr": 0.001,
+      "best_val_acc": 0.9405
+    },
+    {
+      "lr": 0.003,
+      "best_val_acc": 0.93025
+    },
+    {
+      "lr": 0.01,
+      "best_val_acc": 0.905
+    }
+  ]
+}

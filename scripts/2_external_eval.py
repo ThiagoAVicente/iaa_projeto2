@@ -63,8 +63,14 @@ def load_model(model_name, run_name):
     model.load_state_dict(torch.load(weights, map_location=DEVICE))
     model.eval()
     cfg = MODELS[model_name]
-    transform = build_transform(cfg["input_size"], mean, std,
-                                train=False, normalize=normalize)
+    base_tf = build_transform(cfg["input_size"], mean, std,
+                              train=False, normalize=normalize)
+    # External images are not 32x32. Prepend a resize so every input
+    # matches the model's expected spatial dimensions.
+    transform = T.Compose([
+        T.Resize((cfg["input_size"], cfg["input_size"])),
+        base_tf,
+    ])
     return model, transform, cfg["batch_size"], normalize
 
 
@@ -145,50 +151,6 @@ def run_model(model_name, run_name, bucket, max_per_class):
     return results
 
 
-def emit_latex_table(all_results, max_per_class, out_path):
-    rows = []
-    rows.append(r"\begin{table*}[t]")
-    rows.append(r"\centering")
-    rows.append(rf"\caption{{Cross-generator evaluation on the Defactify test split. "
-                rf"Each row uses {max_per_class} REAL plus {max_per_class} FAKE images of the indicated generator. "
-                rf"Best per (generator, metric) in bold.}}")
-    rows.append(r"\label{tab:external}")
-    rows.append(r"\begin{tabular}{llccccc}")
-    rows.append(r"\toprule")
-    rows.append(r"Generator & Model & Acc & Prec & Rec & F1 & AUC \\")
-    rows.append(r"\midrule")
-
-    for gname in GENERATORS.values():
-        # bold the per-row best for each metric across models
-        per_model = {m: all_results[m].get(gname) for m in all_results
-                     if all_results[m] and all_results[m].get(gname)}
-        best = {}
-        for metric in ("accuracy", "precision", "recall", "f1", "auc"):
-            vals = [(m, d[metric]) for m, d in per_model.items() if d.get(metric) is not None]
-            if vals:
-                best[metric] = max(vals, key=lambda x: x[1])[0]
-
-        model_keys = list(per_model.keys())
-        for idx, m in enumerate(model_keys):
-            d = per_model[m]
-            first_col = gname if idx == 0 else ""
-            cells = []
-            for metric in ("accuracy", "precision", "recall", "f1", "auc"):
-                v = d.get(metric)
-                s = f"{v:.3f}" if v is not None else "--"
-                if best.get(metric) == m:
-                    s = rf"\textbf{{{s}}}"
-                cells.append(s)
-            rows.append(f"{first_col} & {m} & " + " & ".join(cells) + r" \\")
-        rows.append(r"\midrule")
-    rows[-1] = r"\bottomrule"
-    rows.append(r"\end{tabular}")
-    rows.append(r"\end{table*}")
-
-    out_path.write_text("\n".join(rows))
-    print(f"Saved {out_path}")
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--max-per-class", type=int, default=500,
@@ -228,9 +190,6 @@ def main():
     with open(json_path, "w") as f:
         json.dump(all_results, f, indent=2)
     print(f"Saved {json_path}")
-
-    tex_path = out_dir / "external_table.tex"
-    emit_latex_table(all_results, args.max_per_class, tex_path)
 
 
 if __name__ == "__main__":

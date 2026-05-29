@@ -175,3 +175,17 @@ uv run --project final python scripts/2_external_eval.py
 Accuracy range across the five generators: 0.43 – 0.67. AUC falls to 0.45 on Midjourney v6, confirming the detector does not transfer beyond Stable Diffusion 1.4.
 
 ---
+
+## 11. Grad-CAM (same inputs, both models)
+
+Picks a small set of test samples that both models classify correctly with moderate confidence, then overlays the Grad-CAM heat-map of each model on the same input. The shared-input layout makes the difference in attention directly comparable: ResNet-18 typically lights up a broader region around the subject, while the shallower CNN concentrates on smaller, focal patches.
+
+```sh
+uv run --project final python -m final.gradcam
+```
+
+-> `persist/images/gradcam_combined.png`
+
+<img src="persist/images/gradcam_combined.png" width="700">
+
+---

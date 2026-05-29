@@ -54,7 +54,7 @@ def main():
     ax.set_xscale("log")
     ax.set_xlabel("learning rate")
     ax.set_ylabel("best validation accuracy")
-    ax.set_title("Learning-rate sweep (10 epochs, 20\\% training subsample)")
+    ax.set_title("Learning-rate sweep (10 epochs, 20% training subsample)")
     ax.grid(True, which="both", ls="--", alpha=0.4)
     ax.legend(loc="lower center")
     fig.tight_layout()

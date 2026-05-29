@@ -11,8 +11,8 @@ University group project for the course *Introdução à Aprendizagem Automátic
 
 | Document | What it is |
 |----------|-----------|
-| [`report.pdf`](report.pdf) | Final IEEE-format report (6 pages) |
-| [`slides.pdf`](slides.pdf) | Slides used in presentation |
+| [`IAA_FINAL_DELIVERABLE_3_REPORT.pdf`](IAA_FINAL_DELIVERABLE_3_REPORT.pdf) | Final IEEE-format report (6 pages) |
+| [`IAA_FINAL_DELIVERABLE_3_SLIDES.pdf`](IAA_FINAL_DELIVERABLE_3_SLIDES.pdf) | Slides used in presentation |
 | [`RESULT.md`](RESULT.md) | Step-by-step reproduction trail with the figures |
 
 ## References
